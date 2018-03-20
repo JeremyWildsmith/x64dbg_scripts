@@ -147,10 +147,8 @@ def bphit():
             ownerTa = findOwnerTa(branchAddr)
 
             if ownerTa is not None:
-                print("Eyy I did something.")
                 branchAddr = ownerTa.address
-                return False
-            
+
             branchAddressStr = hex(branchAddr)
             ta.hitCount = ta.hitCount + 1
             if branchAddressStr not in ta.branches:
