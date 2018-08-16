@@ -3,6 +3,23 @@ This repository is a list of x64db python scripts for use with the x64dbg Python
 
 These scripts can be used to analyze executable binaries and help reverse engineering their behavior.
 
+### combine_pages.py
+
+#### Description
+An x64dbg script that combines adjacent memory pages of the same size into a single memory page of larger size. This is very useful when attempting to dump an unpacked or injected program. Typically, multiple sections will be allocated using VirtualAllocEx and when you go to dump the injected program or unpacked program using OllyDumpEx, you can encounter issues with the maximum number of sections allowed per PE Image on Windows XP (Upper limit of 92 sections for PE32 images.)
+
+This tool is to specifically target issues with running dumped PE Images with more than 92 sections on Windows XP. On Windows Vista, 10 etc you can use more sections and this is not an issue.
+
+#### Useage
+Load the Python script into x64dbg and use the command line to invoke the mergeSection function:
+
+The below command will 4 adjacent pages starting at 0x50000, where each page is 0x1000 bytes in length.
+````
+python mergeSection(0x50000, 0x1000, 4)
+````
+
+
+
 ### traceAreas.py
 
 #### Description
